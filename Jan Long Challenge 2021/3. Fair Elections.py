@@ -10,12 +10,14 @@ class Solution:
         heapify(B)
         cnt = 0
         while v1 <= v2:
-            tmp1 = heappop(A) if A else 0
-            tmp2 = -heappop(B) if B else 0
-            if tmp1 == tmp2:
-                break
-            v1 = (v1 - tmp1) + tmp2
-            v2 = (v2 - tmp2) + tmp1
+            tmp1 = heappop(A) if A else float('inf')
+            tmp2 = -heappop(B) if B else float('-inf')
+            if tmp1 >= tmp2:
+                return -1
+            elif tmp1 < tmp2:
+                v1 = (v1 - tmp1) + tmp2
+                v2 = (v2 - tmp2) + tmp1
+
             cnt += 1
 
         return cnt

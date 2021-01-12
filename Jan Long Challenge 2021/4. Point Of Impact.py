@@ -3,10 +3,13 @@ class Solution:
         i = x
         j = y
         if not n or not k or x < 0 or y < 0: return (0, 0)
+
         if i == j and k <= 0:
             return (i, j)
+
         if i == j and k > 0:
             return (n, n)
+
         ans = []
         dir = 0
         cnt = 0
@@ -36,6 +39,7 @@ class Solution:
 
         if k <= 4:
             return ans[k - 1]
+
         return ans[(k % 4) - 1]
 
 
