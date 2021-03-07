@@ -1,30 +1,67 @@
 class Solution:
     def solve(self, N, E, H, A, B, C):
-        ans = []
         egg = E
         bar = H
         people = N
-        while egg and bar:
-            global omelette, milk_shake, cake
-            if A < B and A < C:
-                omelette = E // 2
-                egg -= omelette * 2
-                people -= omelette
+        prices = {
+            "omelette": A,
+            "milk_shake": B,
+            "cake": C
+        }
+        prices = sorted(prices.items(), key=lambda i: i[1])
 
-            if B > A and B < C:
-                milk_shake = H // 3
-                bar -= milk_shake * 3
-                people -= milk_shake
+        while egg and bar and people > 0:
+            no_of_omelette = 0
+            no_of_shake = 0
+            no_of_cake = 0
+            for dish, price in prices:
+                if dish == "omelette":
+                    no_of_omelette = egg // 2
+                    egg -= no_of_omelette * 2
+                    people -= no_of_omelette
 
-            if C > A and C > B:
-                cake = min(egg, bar)
-                people -= cake
+                    #TODO: Take care of people
+                    if people < 0:
+                        return N * price
+
+                    #TODO: Take care of Incredients
+
+                    if people == 0:
+                        return no_of_omelette * price
+
+                if dish == "milk_shake":
+                    no_of_shake = bar // 3
+                    bar -= no_of_shake * 3
+                    people -= no_of_shake
+
+                    #TODO: Take care of people
+
+                    # TODO: Take care of Incredients
+
+                    if people == 0:
+                        return no_of_omelette * A + no_of_shake * price
+
+
+                if dish == "cake":
+                    no_of_cake = min(bar, egg)
+                    egg -= no_of_cake
+                    bar -= no_of_cake
+                    people -= no_of_cake
+
+                    #TODO: Take care of people
+
+                    # TODO: Take care of Incredients
+
+                    if people == 0:
+                        return no_of_omelette * A + no_of_shake * B + no_of_cake * price
 
             if people == 0:
-                total_price = omelette * A + milk_shake * B + cake * C
-                return total_price
+                return no_of_omelette + no_of_shake + no_of_cake
 
+            print(no_of_omelette, no_of_shake, no_of_cake, people)
             break
+
+
 
 
 

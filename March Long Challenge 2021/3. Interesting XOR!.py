@@ -8,7 +8,6 @@ class Solution:
         h = 2 ** d
         for i in range(1, h):
             tmp = i ^ A
-            print(i, tmp)
             ans = max(ans, i * tmp)
 
         return ans
