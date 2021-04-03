@@ -1,16 +1,17 @@
 class Solution:
-    def solve(self, A):
-        ans = 0
-        d = 1
-        while 2 ** d < A:
-            d += 1
+    def solve(self, C):
+        A = "1"
+        B = "0"
+        C = bin(C).replace('0b', '')
+        for i in range(1, len(C)):
+            if C[i] == '0':
+                A += '1'
+                B += '1'
+            else:
+                A += '0'
+                B += '1'
 
-        h = 2 ** d
-        for i in range(1, h):
-            tmp = i ^ A
-            ans = max(ans, i * tmp)
-
-        return ans
+        return int(A, 2) * int(B, 2)
 
 
 if __name__ == '__main__':

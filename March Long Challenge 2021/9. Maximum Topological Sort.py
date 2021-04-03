@@ -9,7 +9,6 @@ class Solution:
         for i, j in A:
             graph[i-1].append(j-1)
             graph[j-1].append(i-1)
-            inDegree[i-1] += 1
 
 
         # for i in graph:
