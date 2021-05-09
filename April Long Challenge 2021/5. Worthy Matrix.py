@@ -8,17 +8,17 @@ class Solution:
 
         for i in range(n):
             for j in range(1, m):
-                A[i][j] += A[i][j-1]
+                A[i][j] += A[i][j - 1]
 
         for i in range(1, n):
             for j in range(m):
-                A[i][j] += A[i-1][j]
+                A[i][j] += A[i - 1][j]
 
         cnt = 0
         for i in range(l, h):
-            for j in range(n-i):
-                for k in range(m-i):
-                    total_size = (i+1) * (i+1)
+            for j in range(n - i):
+                for k in range(m - i):
+                    total_size = (i + 1) * (i + 1)
                     total_sum = 0
                     avg = 0
                     if i == 0:
@@ -26,15 +26,15 @@ class Solution:
                         avg = total_sum
                     else:
                         if j == 0 and k == 0:
-                            total_sum = A[j+i][k+i]
+                            total_sum = A[j + i][k + i]
                         elif j == 0:
-                            total_sum = A[j+i][k+i] - A[j+i][k-1]
+                            total_sum = A[j + i][k + i] - A[j + i][k - 1]
 
                         elif k == 0:
-                            total_sum = A[j+i][k+i] - A[j-1][k+i]
+                            total_sum = A[j + i][k + i] - A[j - 1][k + i]
 
                         else:
-                            total_sum = A[j + i][k + i] - A[j-1][k+i] - A[j+i][k-1] + A[j-1][k-1]
+                            total_sum = A[j + i][k + i] - A[j - 1][k + i] - A[j + i][k - 1] + A[j - 1][k - 1]
 
                         avg = total_sum / total_size
 
@@ -43,13 +43,13 @@ class Solution:
 
         return cnt
 
+
 if __name__ == '__main__':
     S = Solution()
     B = [[2, 2, 3],
          [3, 4, 5],
          [4, 5, 5]]
     print(S.solve(B, 3, 3, 4))
-
 
 if __name__ == '__main__':
     S = Solution()

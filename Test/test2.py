@@ -1,4 +1,5 @@
 import sys
+sys.setrecursionlimit(10 ** 9)
 
 class Solution:
     def dp(self, A, idx, prev, dp):

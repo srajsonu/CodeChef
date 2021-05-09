@@ -32,7 +32,7 @@ class Solution:
 
             i += 1
 
-        return 0
+        return bin(i).replace('0b', '')
 
         # while l <= h:
         #     mid = (l + h) // 2
